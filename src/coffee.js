@@ -1,12 +1,3 @@
-/*
-	anvil.coffee - CoffeeScript compiler plugin for anvil.js
-	version: 0.0.2
-	author: Alex Robson <alex@sharplearningcurve.com> (http://sharplearningcurve.com)
-	copyright: 2012
-	license: Dual licensed 
-			 MIT (http://www.opensource.org/licenses/mit-license)
-			 GPL (http://www.opensource.org/licenses/gpl-license)
-*/
 var coffeeScript = require( "coffee-script" );
 
 var coffeeCompilerFactory = function( _, anvil ) {
@@ -15,6 +6,11 @@ var coffeeCompilerFactory = function( _, anvil ) {
 		
 		configure: function( config, command, done ) {
 			anvil.addCompiler( ".coffee", this );
+			anvil.config[ "anvil.combiner" ].patterns.push( {
+				extensions: [ ".coffee" ],
+				find: "/[#]{3}.?import.?[(]?.?[\"'].*[\"'].?[)]?.?[#]{3}/g",
+				replace: "/([ \t]*)[#]{3}.?import.?[(]?.?[\"']replace[\"'].?[)]?.?[#]{3}/g"
+			} );
 			done();
 		},
 
