@@ -1,9 +1,8 @@
-var coffeeScript = require( "coffee-script" );
+var coffeeScript;
 
-var coffeeCompilerFactory = function( _, anvil ) {
-	return anvil.plugin( {
+module.exports = function( _, anvil ) {
+	anvil.plugin( {
 		name: "anvil.coffee",
-		
 		configure: function( config, command, done ) {
 			anvil.addCompiler( ".coffee", this );
 			anvil.config[ "anvil.combiner" ].patterns.push( {
@@ -13,8 +12,10 @@ var coffeeCompilerFactory = function( _, anvil ) {
 			} );
 			done();
 		},
-
 		compile: function( content, done ) {
+			if( !coffeeScript ) {
+				coffeeScript = require( "coffee-script" );
+			}
 			try {
 				var js = coffeeScript.compile( content, { bare: true } );
 				done( js );
@@ -22,11 +23,8 @@ var coffeeCompilerFactory = function( _, anvil ) {
 				done( "", error );
 			}
 		},
-
 		rename: function( name ) {
 			return name.replace( ".coffee", ".js" );
 		}
 	} );
 };
-
-module.exports = coffeeCompilerFactory;

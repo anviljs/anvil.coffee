@@ -1,8 +1,8 @@
 {
   "author": "Alex Robson <alex@sharplearningcurve.com> (http://sharplearningcurve.com)",
   "name": "anvil.coffee",
-  "description": "CoffeeScript compiler plugin for anvil.js",
-  "version": "0.0.3",
+  "description": "CoffeeScript compiler extension for anvil.js",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/arobson/anvil.coffee.git"
