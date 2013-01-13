@@ -4,7 +4,7 @@ module.exports = function( _, anvil ) {
 	anvil.plugin( {
 		name: "anvil.coffee",
 		configure: function( config, command, done ) {
-			anvil.addCompiler( ".coffee", this );
+			anvil.addCompiler( ".coffee", this, "application/javascript" );
 			anvil.config[ "anvil.combiner" ].patterns.push( {
 				extensions: [ ".coffee" ],
 				find: "/[#]{3}.?import.?[(]?.?[\"'].*[\"'].?[)]?.?[#]{3}/g",
